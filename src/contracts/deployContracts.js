@@ -6,11 +6,8 @@ const zosCleanup = require('./zos/setup/cleanup')
 const zosInit = require('./zos/setup/init')
 const zosGetProject = require('./zos/handlers/getProject')
 const zosSetAdmin = require('./zos/setAdmin')
-
 const zosRegisterContracts = require('./zos/contracts/registerContracts')
 
-const evaluateContracts = require('./evaluateContracts')
-const setupContracts = require('./setupContracts')
 const exportArtifacts = require('./artifacts/exportArtifacts')
 
 /*
@@ -26,7 +23,9 @@ async function deployContracts({
     web3,
     artifacts,
     contracts = [],
+    evaluateContracts,
     initializeContracts,
+    setupContracts,
     forceWalletCreation = false,
     deeperClean = false,
     testnet = false,
@@ -92,13 +91,15 @@ async function deployContracts({
         )
     }
 
-    await setupContracts(
-        web3,
-        artifacts,
-        addressBook,
-        roles,
-        verbose
-    )
+    if( setupContracts ) {
+        await setupContracts(
+            web3,
+            artifacts,
+            addressBook,
+            roles,
+            verbose
+        )
+    }
 
     await zosSetAdmin(
         contracts,

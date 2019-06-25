@@ -1,12 +1,12 @@
 const loadWallet = require('../wallet/loadWallet')
 const loadArtifacts = require('../contracts/artifacts/loadArtifacts')
-const evaluateContracts = require('../contracts/evaluateContracts')
 const createFunctionSignature = require('../contracts/artifacts/createFunctionSignature')
 
 const NETWORK = process.env.NETWORK || 'development'
 
 async function audit({
     web3,
+    evaluateContracts,
     strict = false,
     entries = 20,
     testnet = true,

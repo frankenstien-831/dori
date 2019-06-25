@@ -10,7 +10,6 @@ const zosGetImplementationAddress = require('./zos/contracts/addresses/getImplem
 const zosRegisterContracts = require('./zos/contracts/registerContracts')
 const zosRequestContractUpgrade = require('./zos/contracts/requestContractUpgrades')
 
-const evaluateContracts = require('./evaluateContracts')
 const loadArtifact = require('./artifacts/loadArtifact')
 const updateContractArtifact = require('./artifacts/updateContractArtifact')
 const exportLibraryArtifacts = require('./artifacts/exportLibraryArtifacts')
@@ -29,6 +28,7 @@ const NETWORK = process.env.NETWORK || 'development'
 async function upgradeContracts({
     web3,
     contracts = [],
+    evaluateContracts,
     strict = false,
     testnet = false,
     verbose = true
