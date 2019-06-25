@@ -12,9 +12,17 @@ function writeArtifact(
     const filename = `${artifact.name}.${networkName.toLowerCase()}.json`
 
     // write artifact
-    const artifactString = JSON.stringify(artifact, null, 2)
+    const artifactString = JSON.stringify(
+        artifact,
+        null,
+        2
+    )
 
     const resolvedArtifactsDir = path.resolve(artifactsDir)
+
+    if (!fs.existsSync(resolvedArtifactsDir)) {
+        fs.mkdirSync(resolvedArtifactsDir)
+    }
 
     /* eslint-disable-next-line security/detect-non-literal-fs-filename */
     fs.writeFileSync(

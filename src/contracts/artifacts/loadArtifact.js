@@ -11,6 +11,10 @@ function loadArtifact(
 
     const resolvedArtifactsDir = path.resolve(artifactsDir)
 
+    if (!fs.existsSync(resolvedArtifactsDir)) {
+        fs.mkdirSync(resolvedArtifactsDir)
+    }
+    
     /* eslint-disable-next-line security/detect-non-literal-fs-filename */
     const atritfactString = fs.readFileSync(
         `${resolvedArtifactsDir}/${artifactFileName}`,
