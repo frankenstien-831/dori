@@ -1,6 +1,6 @@
 {
   "name": "@oceanprotocol/dori",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "src/dori.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.2",
+    "glob": "^7.1.4",
     "truffle-contract": "^4.0.21",
     "zos": "^2.4.0",
     "zos-lib": "^2.4.0"
