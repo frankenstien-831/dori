@@ -4,6 +4,7 @@ const {
     upgradeContracts,
     zosCreate,
     confirmUpgrade,
+    audit
 } = require('../src/dori')
 
 function evaluateContracts({
@@ -12,11 +13,12 @@ function evaluateContracts({
     return contracts;
 }
 
-async function initializeContracts(
+async function initializeContracts({
     contracts,
     roles,
+    network,
     verbose = true
-) {
+} = {}) {
     const addressBook = {}
 
     // WARNING!
@@ -30,18 +32,23 @@ async function initializeContracts(
     }
 
     if (contracts.indexOf('Test') > -1) {
-        addressBook['Test'] = zosCreate(
-            'Test',
-            null,
+        addressBook['Test'] = zosCreate({
+            contract: 'Test',
+            network,
+            args: null,
             verbose
-        )
+        })
     }
 
     return addressBook
 }
 
-async function setupContracts() {
-
+async function setupContracts({
+    verbose
+} = {}) {
+    if (verbose) {
+        console.log('Setting up contracts')
+    }
 }
 
 const verbose = true;
@@ -85,6 +92,15 @@ module.exports = async (cb) => {
         accounts[2],
         verbose
     )
+        .catch(err => cb(err))
+
+
+    await audit({
+        web3,
+        evaluateContracts,
+        verbose
+    })
+        .catch(err => cb(err))
 
     cb()
 }

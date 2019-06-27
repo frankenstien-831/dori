@@ -73,17 +73,19 @@ async function deployContracts({
         )
     }
 
-    await zosRegisterContracts(
+    await zosRegisterContracts({
         contracts,
-        false,
+        network: NETWORK,
+        force: false,
         verbose
-    )
+    })
 
-    const addressBook = await initializeContracts(
+    const addressBook = await initializeContracts({
         contracts,
         roles,
+        network: NETWORK,
         verbose
-    )
+    })
 
     if (verbose) {
         console.log(
@@ -92,20 +94,21 @@ async function deployContracts({
     }
 
     if( setupContracts ) {
-        await setupContracts(
+        await setupContracts({
             web3,
             artifacts,
             addressBook,
             roles,
             verbose
-        )
+        })
     }
 
-    await zosSetAdmin(
+    await zosSetAdmin({
         contracts,
         roles,
+        network: NETWORK,
         verbose
-    )
+    })
 
     await exportArtifacts(
         name,

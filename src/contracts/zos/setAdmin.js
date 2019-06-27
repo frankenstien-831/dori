@@ -2,11 +2,12 @@
 /* eslint-disable-next-line security/detect-child-process */
 const { execSync } = require('child_process')
 
-async function setAdmin(
+async function setAdmin({
     contracts,
     roles,
+    network,
     verbose = true
-) {
+} = {}) {
     const flags = verbose ? '-v' : '-s'
 
     /*
@@ -19,7 +20,7 @@ async function setAdmin(
     }
 
     for (const contractName of contracts) {
-        execSync(`npx zos set-admin ${contractName} ${roles.upgraderWallet} --yes ${flags}`)
+        execSync(`npx zos set-admin ${contractName} ${roles.upgraderWallet} --force --network ${network} --no-interactive ${flags}`)
     }
 
     execSync(`npx zos session --close ${flags}`)
