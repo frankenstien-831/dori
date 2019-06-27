@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "npx truffle compile",
     "test": "npx truffle exec ./test/test.js",
-    "clean": "rm -rf ./build/ && rm -rf ./artifacts/ wallets.json zos.json .zos.session zos.dev-*.json"
+    "clean": "rm -rf ./build/ ./artifacts/ wallets.json && npm run clean:zos",
+    "clean:zos": "rm -rf zos.json .zos.session zos.dev-*.json"
   },
   "keywords": [],
   "author": "",
