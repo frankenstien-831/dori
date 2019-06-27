@@ -8,7 +8,7 @@ const {
 } = require('../src/dori')
 
 function evaluateContracts({
-   contracts
+   contracts = []
 } = {}) {
     return contracts;
 }
