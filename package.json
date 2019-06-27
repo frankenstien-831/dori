@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/dori.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "npx truffle compile",
+    "test": "npx truffle exec ./test/test.js",
+    "clean": "rm -rf ./build/ && rm -rf ./artifacts/ wallets.json zos.json .zos.session zos.dev-*.json"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +17,8 @@
     "truffle-contract": "^4.0.21",
     "zos": "~2.2.3",
     "zos-lib": "~2.3.0"
+  },
+  "devDependencies": {
+    "truffle": "^5.0.24"
   }
 }
