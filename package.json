@@ -11,6 +11,9 @@
   },
   "keywords": [],
   "author": "",
+  "files": [
+    "src/*"
+  ],
   "license": "ISC",
   "dependencies": {
     "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.2",
