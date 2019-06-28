@@ -15,7 +15,8 @@
   "dependencies": {
     "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.2",
     "glob": "^7.1.4",
-    "truffle-contract": "^4.0.21",
+    "truffle-contract": "^4.0.22",
+    "web3": "1.0.0-beta.37",
     "zos": "~2.2.3",
     "zos-lib": "~2.3.0"
   },
