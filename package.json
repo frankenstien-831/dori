@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.3",
+    "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.4",
     "glob": "^7.1.4",
     "truffle-contract": "^4.0.22",
     "web3": "1.0.0-beta.37",
