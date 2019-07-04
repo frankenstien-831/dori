@@ -19,6 +19,7 @@
 ## Table of Contents
 
   - [Get Started](#get-started)
+  - [Usage](#usage)
   - [Testing](#testing)
   - [Contributing](#contributing)
   - [License](#license)
@@ -29,6 +30,39 @@
 
 ```bash
 npm install https://github.com/oceanprotocol/dori.git
+```
+
+## Usage
+
+To deploy a contract do the following:
+
+```javascript
+const {
+    deployContracts
+} = require('@oceanprotocol/dori')
+
+await deployContracts({
+    // coming from truffle
+    web3,
+    // coming from truffle
+    artifacts,
+    evaluateContracts: () => {
+        // decide which contracts to deploy here
+    },
+    initializeContracts: () => {
+        // call the initializer here
+    },
+    setupContracts: () => {
+        // call the in initialize contracts here to set them up
+    },
+    contracts: [
+        'MyContract'
+    ],
+    forceWalletCreation: true,
+    deeperClean: true,
+    testnet: false,
+    verbose: true
+})
 ```
 
 ## Testing
