@@ -29,12 +29,12 @@
 ## Get Started
 
 ```bash
-npm install https://github.com/oceanprotocol/dori.git
+npm i @oceanprotocol/dori
 ```
 
 ## Usage
 
-To deploy a contract do the following:
+To deploy the contract `MyContract` do the following:
 
 ```javascript
 const {
