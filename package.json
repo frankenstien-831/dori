@@ -24,7 +24,7 @@
     "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.4",
     "glob": "^7.1.4",
     "truffle-contract": "~4.0.26",
-    "web3": "1.0.0-beta.37",
+    "web3": "~1.2.0",
     "zos": "~2.2.3",
     "zos-lib": "~2.3.0"
   },
