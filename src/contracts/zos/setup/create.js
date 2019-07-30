@@ -12,7 +12,7 @@ function create({
 
     const initializerConfiguration = args ? `--init initialize --args ${args.join(',')}` : ''
 
-    return execSync(`npx zos create ${contract} ${initializerConfiguration} --timeout ${TIMEOUT} --skip-compile --network ${network} --no-interactive ${flags}`)
+    return execSync(`npx zos create ${contract} ${initializerConfiguration} ${flags} --timeout ${TIMEOUT}`)
         .toString()
         .trim()
 }

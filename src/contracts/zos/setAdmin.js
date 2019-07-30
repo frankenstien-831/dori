@@ -20,7 +20,7 @@ async function setAdmin({
     }
 
     for (const contractName of contracts) {
-        execSync(`npx zos set-admin ${contractName} ${roles.upgraderWallet} --force --network ${network} --no-interactive ${flags}`)
+        execSync(`npx zos set-admin ${contractName} ${roles.upgraderWallet} --yes ${flags}`)
     }
 
     execSync(`npx zos session --close ${flags}`)

@@ -14,7 +14,7 @@ async function registerContracts({
     execSync(`npx zos add ${contracts.join(' ')} --skip-compile ${flags}`)
 
     // push them using zos
-    execSync(`npx zos push ${force ? ' --force' : ''} --skip-compile --timeout ${TIMEOUT} --network ${network} --no-interactive ${flags}`)
+    execSync(`npx zos push ${force ? ' --force' : ''} --skip-compile ${flags} --timeout ${TIMEOUT}`)
 }
 
 module.exports = registerContracts
