@@ -1,7 +1,7 @@
 {
   "name": "@oceanprotocol/dori",
   "version": "0.2.1",
-  "description": "",
+  "description": "Dori, the Zeppelin OS infused contract management framework.",
   "main": "src/dori.js",
   "scripts": {
     "compile": "npx truffle compile",
@@ -9,21 +9,29 @@
     "clean": "rm -rf ./build/ ./artifacts/ wallets.json && npm run clean:zos",
     "clean:zos": "rm -rf zos.json .zos.session zos.dev-*.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanprotocol/dori.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Ocean Protocol <devops@oceanproocol.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/oceanprotocol/dori/issues"
+  },
+  "homepage": "https://github.com/oceanprotocol/dori#readme",
   "files": [
     "src/*"
   ],
-  "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.2",
+    "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.4",
     "glob": "^7.1.4",
-    "truffle-contract": "^4.0.22",
-    "web3": "1.0.0-beta.37",
-    "zos": "~2.4.0",
-    "zos-lib": "~2.4.0"
+    "truffle-contract": "~4.0.26",
+    "web3": "~1.2.0",
+    "zos": "~2.2.3",
+    "zos-lib": "~2.3.0"
   },
   "devDependencies": {
-    "truffle": "^5.0.25"
+    "truffle": "~5.0.29"
   }
 }
