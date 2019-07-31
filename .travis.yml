@@ -21,5 +21,6 @@ before_script:
     - ganache-cli > ganache-cli.log &
 
 script:
+  - npm run lint
   - npm run compile
   - npm run test

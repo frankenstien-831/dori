@@ -76,11 +76,12 @@ async function upgradeContracts({
     }
 
     // register contract upgrades in zos, force it
-    await zosRegisterContracts(
+    await zosRegisterContracts({
         contracts,
-        true,
+        force: true,
+        network: NETWORK,
         verbose
-    )
+    })
 
     const upgraderWallet = await loadWallet(
         web3,

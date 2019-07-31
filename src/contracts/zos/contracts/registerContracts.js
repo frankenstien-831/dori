@@ -3,11 +3,12 @@
 const { execSync } = require('child_process')
 const TIMEOUT = 1 * 60 * 60 // 1 hour
 
-async function registerContracts(
+async function registerContracts({
     contracts,
+    network,
     force,
     verbose = true
-) {
+} = {}) {
     const flags = verbose ? '-v' : '-s'
 
     execSync(`npx zos add ${contracts.join(' ')} --skip-compile ${flags}`)

@@ -1,22 +1,24 @@
-/* web3, artifacts */
+/* globals web3, artifacts */
 const {
     deployContracts,
     upgradeContracts,
     zosCreate,
     confirmUpgrade,
+    audit
 } = require('../src/dori')
 
 function evaluateContracts({
-   contracts
+    contracts = []
 } = {}) {
-    return contracts;
+    return contracts
 }
 
-async function initializeContracts(
+async function initializeContracts({
     contracts,
     roles,
+    network,
     verbose = true
-) {
+} = {}) {
     const addressBook = {}
 
     // WARNING!
@@ -25,26 +27,33 @@ async function initializeContracts(
     const proxies = {}
 
     // returns either the address from the address book or the address of the manual set proxies
+    /* eslint-disable-next-line no-unused-vars */
     const getAddress = (contract) => {
         return addressBook[contract] || proxies[contract]
     }
 
     if (contracts.indexOf('Test') > -1) {
-        addressBook['Test'] = zosCreate(
-            'Test',
-            null,
+        addressBook['Test'] = zosCreate({
+            contract: 'Test',
+            network,
+            args: null,
             verbose
-        )
+        })
     }
 
     return addressBook
 }
 
-async function setupContracts() {
-
+async function setupContracts({
+    verbose
+} = {}) {
+    if (verbose) {
+        /* eslint-disable-next-line no-console */
+        console.log('Setting up contracts')
+    }
 }
 
-const verbose = true;
+const verbose = true
 
 module.exports = async (cb) => {
     // deploy the contract
@@ -85,7 +94,14 @@ module.exports = async (cb) => {
         accounts[2],
         verbose
     )
+        .catch(err => cb(err))
+
+    await audit({
+        web3,
+        evaluateContracts,
+        verbose
+    })
+        .catch(err => cb(err))
 
     cb()
 }
-

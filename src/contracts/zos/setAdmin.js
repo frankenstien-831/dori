@@ -2,11 +2,12 @@
 /* eslint-disable-next-line security/detect-child-process */
 const { execSync } = require('child_process')
 
-async function setAdmin(
+async function setAdmin({
     contracts,
     roles,
+    network,
     verbose = true
-) {
+} = {}) {
     const flags = verbose ? '-v' : '-s'
 
     /*
