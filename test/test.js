@@ -4,7 +4,8 @@ const {
     upgradeContracts,
     zosCreate,
     confirmUpgrade,
-    audit
+    audit,
+    getAddresses
 } = require('../src/dori')
 
 function evaluateContracts({
@@ -100,6 +101,11 @@ module.exports = async (cb) => {
         web3,
         evaluateContracts,
         verbose
+    })
+        .catch(err => cb(err))
+
+    await getAddresses({
+        network: 'development'
     })
         .catch(err => cb(err))
 

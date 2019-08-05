@@ -6,6 +6,7 @@ const confirmTransaction = require('./wallet/confirmTransaction')
 const confirmUpgrade = require('./wallet/confirmUpgrade')
 const deployContracts = require('./contracts/deployContracts')
 const upgradeContracts = require('./contracts/upgradeContracts')
+const getAddresses = require('./get-addresses/get-addresses')
 
 module.exports = {
     upgradeContracts,
@@ -15,5 +16,6 @@ module.exports = {
     submitTransaction,
     confirmTransaction,
     audit,
-    zosCreate
+    zosCreate,
+    getAddresses
 }
