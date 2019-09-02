@@ -34,7 +34,7 @@ async function initializeContracts({
     }
 
     if (contracts.indexOf('Test') > -1) {
-        addressBook['Test'] = zosCreate({
+        addressBook.Test = zosCreate({
             contract: 'Test',
             network,
             args: null,
@@ -91,7 +91,7 @@ module.exports = async (cb) => {
     // confirm the upgrade
     await confirmUpgrade(
         web3,
-        taskBook['Test'],
+        taskBook.Test,
         accounts[2],
         verbose
     )
