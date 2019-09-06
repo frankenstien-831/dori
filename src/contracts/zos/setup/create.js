@@ -5,14 +5,15 @@ const TIMEOUT = 1 * 60 * 60 // 1 hour
 function create({
     contract,
     network,
+    initializer = 'initialize',
     args,
     verbose = true
 } = {}) {
     const flags = verbose ? '-v' : '-s'
 
-    const initializerConfiguration = args ? `--init initialize --args ${args.join(',')}` : ''
+    const initializerArgs = args ? ` --args ${args.join(',')}` : ''
 
-    return execSync(`npx zos create ${contract} ${initializerConfiguration} ${flags} --timeout ${TIMEOUT}`)
+    return execSync(`npx zos create ${contract} --init ${initializer} ${initializerArgs} ${flags} --timeout ${TIMEOUT}`)
         .toString()
         .trim()
 }

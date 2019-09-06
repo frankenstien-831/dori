@@ -93,7 +93,7 @@ async function deployContracts({
         )
     }
 
-    if( setupContracts ) {
+    if (setupContracts) {
         await setupContracts({
             web3,
             artifacts,
