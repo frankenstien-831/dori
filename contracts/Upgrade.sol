@@ -1,8 +1,8 @@
 pragma solidity 0.5.6;
 
-import 'zos-lib/contracts/Initializable.sol';
+import 'openzeppelin-eth/contracts/ownership/Ownable.sol';
 
-contract Upgrade is Initializable {
+contract Upgrade is Ownable {
     uint test;
     
     function initialize()
@@ -10,5 +10,6 @@ contract Upgrade is Initializable {
         initializer
     {
         test = 1;
+        Ownable.initialize(msg.sender);
     }
 }

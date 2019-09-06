@@ -1,11 +1,12 @@
 pragma solidity 0.5.6;
 
-import 'zos-lib/contracts/Initializable.sol';
+import 'openzeppelin-eth/contracts/ownership/Ownable.sol';
 
-contract Test is Initializable {
+contract Test is Ownable {
     function initialize()
         external
         initializer
     {
+        Ownable.initialize(msg.sender);
     }
 }

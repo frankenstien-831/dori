@@ -35,6 +35,7 @@
   "devDependencies": {
     "eslint": "~6.3.0",
     "eslint-config-oceanprotocol": "^1.5.0",
+    "openzeppelin-eth": "^2.2.0",
     "truffle": "~5.0.34"
   }
 }
