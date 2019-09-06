@@ -42,16 +42,38 @@ async function initializeContracts({
         })
     }
 
+    if (contracts.indexOf('EarlyOwner') > -1) {
+        addressBook.EarlyOwner = zosCreate({
+            contract: 'EarlyOwner',
+            network,
+            args: [
+                roles.ownerWallet
+            ],
+            verbose
+        })
+    }
+
     return addressBook
 }
 
 async function setupContracts({
+    addressBook,
+    artifacts,
+    roles,
     verbose
 } = {}) {
     if (verbose) {
         /* eslint-disable-next-line no-console */
         console.log('Setting up contracts')
     }
+
+    const Test = await artifacts.require('Test')
+    const TestInstance = await Test.at(addressBook.Test)
+
+    await TestInstance.transferOwnership(
+        roles.ownerWallet,
+        { from: roles.deployer }
+    )
 }
 
 const verbose = true
@@ -65,7 +87,8 @@ module.exports = async (cb) => {
         initializeContracts,
         setupContracts,
         contracts: [
-            'Test'
+            'Test',
+            'EarlyOwner'
         ],
         forceWalletCreation: true,
         deeperClean: true,

@@ -9,6 +9,7 @@ const zosSetAdmin = require('./zos/setAdmin')
 const zosRegisterContracts = require('./zos/contracts/registerContracts')
 
 const exportArtifacts = require('./artifacts/exportArtifacts')
+const checkOwnership = require('./checkOwnership')
 
 /*
  *-----------------------------------------------------------------------
@@ -102,6 +103,13 @@ async function deployContracts({
             verbose
         })
     }
+
+    await checkOwnership({
+        artifacts,
+        addressBook,
+        roles,
+        verbose
+    })
 
     await zosSetAdmin({
         contracts,
