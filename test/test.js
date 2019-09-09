@@ -11,7 +11,10 @@ const {
 function evaluateContracts({
     contracts = []
 } = {}) {
-    return contracts
+    return contracts && contracts.length > 0 ? contracts : [
+        'Test',
+        'EarlyOwner'
+    ]
 }
 
 async function initializeContracts({
@@ -86,10 +89,6 @@ module.exports = async (cb) => {
         evaluateContracts,
         initializeContracts,
         setupContracts,
-        contracts: [
-            'Test',
-            'EarlyOwner'
-        ],
         forceWalletCreation: true,
         deeperClean: true,
         testnet: false,
@@ -122,6 +121,7 @@ module.exports = async (cb) => {
 
     await audit({
         web3,
+        artifacts,
         evaluateContracts,
         verbose
     })
