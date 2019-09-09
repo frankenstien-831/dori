@@ -4,6 +4,7 @@ const { execSync } = require('child_process')
 
 const setupWallets = require('../../../wallet/setupWallets')
 const loadWallet = require('../../../wallet/loadWallet')
+const log = require('./../../../log')
 
 const TIMEOUT = 36000
 const bypassMultisigWallets = process.env.KEEPER_BYPASS_MULTISIG_WALLETS || false
@@ -25,10 +26,13 @@ async function init(
         ownerWalletAddress
 
     if (bypassMultisigWallets) {
-        console.log(`========================================================================`)
-        console.log(`WARNING: You are bypassing assigning multi sig wallets to the contracts!`)
-        console.log(`Be aware that this is a security risk! i hope you know what you are doing.`)
-        console.log(`========================================================================`)
+        log({
+            severity: 'Warning',
+            message: [
+                'WARNING: You are bypassing assigning multi sig wallets to the contracts!',
+                'Be aware that this is a security risk! i hope you know what you are doing.'
+            ]
+        })
     } else {
         await setupWallets(
             web3,

@@ -1,15 +1,18 @@
 const loadWallet = require('../wallet/loadWallet')
 const loadArtifacts = require('../contracts/artifacts/loadArtifacts')
-const createFunctionSignature = require('../contracts/artifacts/createFunctionSignature')
+
+const auditOwnership = require('./auditOwnership')
+const auditUpgradeTransactions = require('./auditUpgradeTransactions')
 
 const NETWORK = process.env.NETWORK || 'development'
 
 async function audit({
     web3,
+    artifacts,
     evaluateContracts,
-    strict = false,
     entries = 20,
-    testnet = true,
+    strict = false,
+    testnet = false,
     verbose = true
 } = {}) {
     const upgraderWallet = await loadWallet(
@@ -18,69 +21,36 @@ async function audit({
         verbose
     )
 
-    const max = entries
-    const txCount = await upgraderWallet.transactionCount()
-    const from = txCount - max > 0 ? txCount - max : 0
-    const to = txCount.toNumber()
-
-    const txIds = await upgraderWallet.getTransactionIds(
-        from,
-        to,
-        true,
-        true
+    const ownerWallet = await loadWallet(
+        web3,
+        'owner',
+        verbose
     )
 
-    const sortedTxIds = txIds.sort((a, b) => b.toNumber() - a.toNumber())
-
+    // find out which contracts we gonna handle here
     const evaluatedContracts = await evaluateContracts({
         testnet,
         verbose
     })
 
-    const artifacts = await loadArtifacts({
+    const loadedArtifacts = await loadArtifacts({
         contractNames: evaluatedContracts,
         networkName: NETWORK
     })
 
-    /* eslint-disable-next-line no-console */
-    console.log(
-        '\n',
-        'Wallet:', upgraderWallet.address
-    )
+    await auditOwnership({
+        artifacts,
+        loadedArtifacts,
+        ownerWalletAddress: ownerWallet.address,
+        verbose,
+        strict
+    })
 
-    for (const txId of sortedTxIds) {
-        const transaction = await upgraderWallet.transactions(
-            txId
-        )
-
-        const sig = createFunctionSignature({
-            functionName: 'upgradeTo',
-            parameters: ['address']
-        })
-
-        const artifact = artifacts.find((a) => a.address === transaction.destination)
-        const artifactName = artifact ? artifact.name : 'Unknown'
-
-        const confirmations = await upgraderWallet.getConfirmations(
-            txId
-        )
-
-        /* eslint-disable-next-line no-console */
-        console.log(
-            '\n',
-            'Transaction ID:', txId.toString(),
-            '\n',
-            'Destination:', transaction.destination,
-            '\n',
-            'Contract:', `${artifactName}`,
-            '\n',
-            'Data is `upgradeTo` call:', transaction.data.startsWith(sig),
-            '\n',
-            'Confirmed from:', confirmations.join(', '),
-            '\n',
-            'Executed:', transaction.executed
-        )
-    }
+    await auditUpgradeTransactions({
+        entries,
+        upgraderWallet,
+        loadedArtifacts
+    })
 }
 
 module.exports = audit
