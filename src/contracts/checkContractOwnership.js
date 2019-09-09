@@ -5,6 +5,7 @@ async function checkContractOwnership({
     contractName,
     address,
     ownerWalletAddress,
+    verbose,
     strict = true
 } = {}) {
     const Ownable = await artifacts.require('Ownable')
@@ -41,6 +42,12 @@ async function checkContractOwnership({
 
             return false
         }
+    }
+
+    if (verbose) {
+        console.log(
+            `Owner of contract ${contractName}, is set to the owner wallet at ${ownerWalletAddress}`
+        )
     }
 
     return true

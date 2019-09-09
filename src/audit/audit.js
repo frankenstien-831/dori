@@ -42,6 +42,7 @@ async function audit({
         artifacts,
         loadedArtifacts,
         ownerWalletAddress: ownerWallet.address,
+        verbose,
         strict
     })
 

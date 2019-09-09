@@ -18,6 +18,7 @@ async function checkOwnership({
             contractName,
             address: addressBook[contractName],
             ownerWalletAddress: roles.ownerWallet,
+            verbose,
             strict: true
         })
     }

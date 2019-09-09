@@ -5,6 +5,7 @@ async function auditOwnership({
     artifacts,
     loadedArtifacts,
     ownerWalletAddress,
+    verbose,
     strict
 } = {}) {
     log({
@@ -18,19 +19,14 @@ async function auditOwnership({
     )
 
     for (const artifact of loadedArtifacts) {
-        const rightOwner = await checkContractOwnership({
+        await checkContractOwnership({
             artifacts,
             contractName: artifact.name,
             address: artifact.address,
             ownerWalletAddress,
+            verbose,
             strict
         })
-
-        if (rightOwner) {
-            console.log(
-                `Owner of contract ${artifact.name}, is set to the owner wallet at ${ownerWalletAddress}`
-            )
-        }
     }
 }
 
