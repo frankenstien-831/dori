@@ -95,7 +95,7 @@ async function upgradeContracts({
         const [newContractName, oldContractName] = contractName.indexOf(':') > -1 ? contractName.split(':') : [contractName, contractName]
 
         // get proxy address of current implementation
-        const {address, implementation} = loadArtifact(
+        const { address, implementation } = loadArtifact(
             oldContractName,
             NETWORK
         )

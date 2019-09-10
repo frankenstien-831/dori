@@ -27,7 +27,7 @@ async function getAddresses({
     console.log(`| ${'Contract'.padEnd(33)} | Version | ${'Address'.padEnd(44)} |`)
 
     // eslint-disable-next-line no-console
-    console.log(`|-----------------------------------|---------|----------------------------------------------|`)
+    console.log('|-----------------------------------|---------|----------------------------------------------|')
 
     for (const artifactName of artifacts) {
         const artifactString = fs.readFileSync(

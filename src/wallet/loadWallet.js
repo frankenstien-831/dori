@@ -36,6 +36,7 @@ async function loadWallet(
 
     if (!MultiSigWalletWithDailyLimit) {
         // load wallet object
+        // eslint-disable-next-line require-atomic-updates
         MultiSigWalletWithDailyLimit = await loadMultiSigWallet(web3)
     }
 

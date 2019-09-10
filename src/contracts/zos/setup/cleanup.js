@@ -24,7 +24,7 @@ async function cleanup(
 
     if (deep) {
         if (verbose) {
-            console.log(`Doing deep clean`)
+            console.log('Doing deep clean')
         }
 
         stuffToDelete.push(
@@ -33,7 +33,7 @@ async function cleanup(
 
         if (deeper) {
             if (verbose) {
-                console.log(`Doing deeper clean`)
+                console.log('Doing deeper clean')
             }
 
             if (!whitelist.find((whitelistEntruy) => whitelistEntruy === networkId)) {
