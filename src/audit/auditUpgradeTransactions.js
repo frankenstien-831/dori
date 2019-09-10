@@ -1,5 +1,5 @@
 const createFunctionSignature = require('../contracts/artifacts/createFunctionSignature')
-const getTransactionIds = require('./getTransactionIds')
+const getTransactionIds = require('../wallet/getTransactionIds')
 const log = require('../log')
 
 async function auditUpgradeTransactions({
