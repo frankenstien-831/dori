@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "npx truffle compile",
     "test": "npx truffle exec ./test/test.js",
-    "lint": "npx eslint test/",
+    "lint": "npx eslint ./src/ ./test/",
     "clean": "rm -rf ./build/ ./artifacts/ wallets.json && npm run clean:zos",
     "clean:zos": "rm -rf zos.json .zos.session zos.dev-*.json"
   },

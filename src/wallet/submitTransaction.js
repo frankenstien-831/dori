@@ -29,7 +29,7 @@ async function submitTransaction(
 
     const submissionEvent = tx.logs.find((event) => event.event === 'Submission')
     if (!submissionEvent) {
-        throw new Error(`Submitting transaction failed!`)
+        throw new Error('Submitting transaction failed!')
     }
 
     const confirmationEvent = tx.logs.find((event) => event.event === 'Confirmation')
