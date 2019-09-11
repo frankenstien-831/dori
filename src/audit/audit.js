@@ -3,6 +3,7 @@ const loadArtifacts = require('../contracts/artifacts/loadArtifacts')
 
 const auditOwnership = require('./auditOwnership')
 const auditUpgradeTransactions = require('./auditUpgradeTransactions')
+const auditOwnerTransactions = require('./auditOwnerTransactions')
 
 const NETWORK = process.env.NETWORK || 'development'
 
@@ -44,6 +45,13 @@ async function audit({
         ownerWalletAddress: ownerWallet.address,
         verbose,
         strict
+    })
+
+    await auditOwnerTransactions({
+        web3,
+        entries,
+        ownerWallet,
+        loadedArtifacts
     })
 
     await auditUpgradeTransactions({

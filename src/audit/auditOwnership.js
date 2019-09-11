@@ -18,16 +18,16 @@ async function auditOwnership({
         '\n'
     )
 
-    for (const artifact of loadedArtifacts) {
-        await checkContractOwnership({
+    await Promise.all(
+        loadedArtifacts.map((artifact) => checkContractOwnership({
             artifacts,
             contractName: artifact.name,
             address: artifact.address,
             ownerWalletAddress,
             verbose,
             strict
-        })
-    }
+        }))
+    )
 }
 
 module.exports = auditOwnership

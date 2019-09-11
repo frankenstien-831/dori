@@ -1,4 +1,4 @@
-const web3 = require('web3')
+const web3Utils = require('web3-utils')
 
 function createFunctionSignature({
     functionName,
@@ -6,7 +6,7 @@ function createFunctionSignature({
 } = {}) {
     const signature = `${functionName}(${parameters.join(',')})`
 
-    const signatureHash = web3.utils.sha3(signature)
+    const signatureHash = web3Utils.sha3(signature)
     return signatureHash.substring(0, 10)
 }
 
