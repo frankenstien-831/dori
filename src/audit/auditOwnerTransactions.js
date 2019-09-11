@@ -8,7 +8,7 @@ const sigs = {
     [createFunctionSignature({ functionName: 'addOwner', parameters: ['address'] })]: 'addOwner(address)',
     [createFunctionSignature({ functionName: 'removeOwner', parameters: ['address'] })]: 'removeOwner(address)',
     [createFunctionSignature({ functionName: 'replaceOwner', parameters: ['address', 'address'] })]: 'replaceOwner(address,address)',
-    [createFunctionSignature({ functionName: 'mint', parameters: ['address', 'uint256'] })]: 'mint(address,uint256)',
+    [createFunctionSignature({ functionName: 'mint', parameters: ['address', 'uint256'] })]: 'mint(address,uint256)'
 }
 
 async function auditOwnerTransactions({
