@@ -26,16 +26,16 @@
   ],
   "dependencies": {
     "@oceanprotocol/multisigwallet": "git+https://github.com/oceanprotocol/MultiSigWalletContracts.git#v2.0.4",
+    "@truffle/contract": "~4.0.33",
     "glob": "^7.1.4",
-    "truffle-contract": "~4.0.31",
-    "web3": "~1.2.1",
+    "web3-utils": "~1.2.1",
     "zos": "~2.2.3",
     "zos-lib": "~2.3.0"
   },
   "devDependencies": {
-    "eslint": "~6.3.0",
+    "eslint": "~6.4.0",
     "eslint-config-oceanprotocol": "^1.5.0",
     "openzeppelin-eth": "^2.2.0",
-    "truffle": "~5.0.34"
+    "truffle": "~5.0.37"
   }
 }

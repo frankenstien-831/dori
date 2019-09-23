@@ -1,4 +1,4 @@
-const contract = require('truffle-contract')
+const contract = require('@truffle/contract')
 
 const MultiSigWalletWithDailyLimitArtifact =
     require('@oceanprotocol/multisigwallet/build/contracts/MultiSigWalletWithDailyLimit.json')
