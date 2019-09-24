@@ -1,6 +1,6 @@
 {
   "name": "@oceanprotocol/dori",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Dori, the Zeppelin OS infused contract management framework.",
   "main": "src/dori.js",
   "scripts": {
