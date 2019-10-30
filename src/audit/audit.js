@@ -1,9 +1,14 @@
+// wallets
 const loadWallet = require('../wallet/loadWallet')
 const loadArtifacts = require('../contracts/artifacts/loadArtifacts')
 
+// ownership
 const auditOwnership = require('./auditOwnership')
-const auditUpgradeTransactions = require('./auditUpgradeTransactions')
 const auditOwnerTransactions = require('./auditOwnerTransactions')
+
+// upgrade
+const auditUpgradeTransactions = require('./auditUpgradeTransactions')
+const auditUpgrades = require('./auditUpgrades')
 
 const NETWORK = process.env.NETWORK || 'development'
 
@@ -57,6 +62,11 @@ async function audit({
     await auditUpgradeTransactions({
         entries,
         upgraderWallet,
+        loadedArtifacts
+    })
+
+    await auditUpgrades({
+        web3,
         loadedArtifacts
     })
 }
