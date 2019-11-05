@@ -42,28 +42,53 @@ const {
 } = require('@oceanprotocol/dori')
 
 await deployContracts({
-    // coming from truffle
+    // web3, coming from truffle
     web3,
-    // coming from truffle
+    // artifacts, coming from truffle
     artifacts,
-    evaluateContracts: () => {
+    evaluateContracts: ({
+        contracts = []
+    } = {}) => {
         // decide which contracts to deploy here
     },
-    initializeContracts: () => {
-        // call the initializer here
+    initializeContracts: async ({
+        contracts,
+        roles,
+        network,
+        verbose = true
+    } = {}) => {
+        // call the initializer of each contract here
     },
-    setupContracts: () => {
-        // call the in initialize contracts here to set them up
+    setupContracts: async ({
+        addressBook,
+        artifacts,
+        roles,
+        verbose
+    } = {}) => {
+        // call the contracts here to set them up
     },
     contracts: [
         'MyContract'
     ],
+    // forces the creation of wallets all the time
     forceWalletCreation: true,
+    // clean zos session files 
+    clean: true,
+    // clean zos files and wallets on the current network as well
     deeperClean: true,
+    // are we going to deploy to a testnet or a mainnet?
     testnet: false,
+    // be verbose or not
     verbose: true
 })
 ```
+An example of the whole flow can be found [here](./test/test.js)
+
+An example of `evaluateContracts` can be found [here](./test/evaluateContracts.js)
+
+An example of `initializeContracts` can be found [here](./test/initializeContracts.js)
+
+An example of `setupContracts` can be found [here](./test/setupContracts.js)
 
 ## Testing
 
